@@ -41,4 +41,7 @@ jobs:
           mkdir build
           cd build
           cmake ..
+          cd test
+          dir
+          test --gtest_output="xml:report.xml"
           dir
