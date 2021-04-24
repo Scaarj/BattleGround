@@ -41,5 +41,4 @@ jobs:
           cd build
           cmake ..
           cmake --build .
-          /test/test --gtest_output="xml:report.xml"
-          cd test
+          tree
