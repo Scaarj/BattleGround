@@ -17,6 +17,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+    name: Build
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -35,7 +36,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
      
-      - name: Unit test
+      - name: Build
         run: |
           mkdir build
           cd build
@@ -49,7 +50,6 @@ jobs:
     - uses: actions/checkout@master
     - name: Test
       uses: skx/github-action-tester@master
-            cd
-            build/test/test --gtest_output="xml:report.xml"
             tree
+            build/test/test --gtest_output="xml:report.xml"
       
