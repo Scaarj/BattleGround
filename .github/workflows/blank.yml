@@ -14,9 +14,10 @@ jobs:
       - name: Apply format checker
         run: |
           git fetch
-          git diff -U0 --no-color  origin/master | clang-format-diff -p1 -style file | tee format_diff.diff
+          git diff -U0 --no-color | clang-format-diff -p1 -style file | tee format_diff.diff
           if [[ -s format_diff.diff ]]; then false; fi
-        if: always()
+        if: failure()
+          echo fail
       - name: Build
         run: |
           mkdir build
