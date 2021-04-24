@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Start format checker
-        uses: yaishenka/docker-codestyle-checker@v1
+        uses: yaishenka/docker-codestyle-checker@master
       - name: Apply format checker
         run: |
             - git fetch
