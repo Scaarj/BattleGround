@@ -3,7 +3,17 @@ on:
   push:
   pull_request:
   workflow_dispatch:
-jobs: 
+jobs:
+  format:
+    name: Format checker
+    runs-on: ubuntu-latest
+    container: yaishenka/docker-codestyle-checker
+    steps:
+      - uses: actions/checkout@v2
+      - name: Start checking
+        run: echo checking
+
+
   build:
     name: Build
     runs-on: ubuntu-latest
