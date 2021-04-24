@@ -10,10 +10,11 @@ jobs:
     container: yaishenka/docker-codestyle-checker
     steps:
       - uses: actions/checkout@v2
-      - name: Start checking
-        run: echo checking
-
-
+      - name: Clang format apply
+        run: |
+          git diff -U0 --no-color main | clang-format-diff -p1 -style file | tee format_diff.diff
+          if [[ -s format_diff.diff ]]; then false; fi
+          dir
   build:
     name: Build
     runs-on: ubuntu-latest
