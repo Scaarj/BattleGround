@@ -23,10 +23,8 @@ jobs:
           cd build
           cmake ..
           cmake --build .
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run tests
+                - name: Run tests
+      - name: Run test
         run: |
             tree
             build/test/test --gtest_output="xml:report.xml"
