@@ -1,11 +1,10 @@
 #include "pch.h"
-
-#include "Sum.h"
+#include "sum.h"
 
 TEST(Example, OnePlusOne) {
     ASSERT_EQ(1 + 1, 2);
 }
 
-TEST(Example, Sum) {
-    ASSERT_EQ(sum(1, 5), 6);
+TEST(ExampleSum, OnePlusOne) {
+    ASSERT_EQ(sum(1, 2), 3);
 }
