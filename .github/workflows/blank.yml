@@ -16,7 +16,6 @@ jobs:
           git fetch
           git diff -U0 --no-color | clang-format-diff -p1 -style file | tee format_diff.diff
           if [[ -s format_diff.diff ]]; then false; fi
-        if: failure()
       - name: Build
         run: |
           mkdir build
