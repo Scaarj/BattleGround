@@ -41,6 +41,4 @@ jobs:
           cd build
           cmake ..
           cmake build .
-          dir
-          cd test
-          dir
+          tree
