@@ -15,7 +15,7 @@ jobs:
           git diff -U0 --no-color main | clang-format-diff -p1 -style file | tee format_diff.diff
           dir
       - name: Search diff
-        if: hashFiles('format_diff.diff') != ''
+        if: hashFiles('formaiff.diff') != ''
         run:
           echo File exist!
 
