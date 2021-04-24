@@ -8,22 +8,18 @@ on:
 
   workflow_dispatch:
 
-jobs:
-  lint:
-    name: clang-format Code Formatter
-    runs-on: ubuntu-latest
-    steps:
-    - name: Clang Code Formatter
-      uses: ivanludvig/clang-format-action@v1.4
-      env:
-        GITHUB_TOKEN: ${ { secrets.GITHUB_TOKEN } }
-        
+jobs:   
   build:
     name: Build
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+     
+      - name: Format checker
+      - uses: ivanludvig/clang-format-action@v1.4
+      - env:
+          GITHUB_TOKEN: ${ { secrets.GITHUB_TOKEN } }
      
       - name: Build
         run: |
