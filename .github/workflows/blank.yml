@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Format checker
+        run: |
+            echo Format checker here..
       - name: Build
         run: |
           mkdir build
