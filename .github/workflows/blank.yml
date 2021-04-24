@@ -38,5 +38,7 @@ jobs:
       - name: Unit test
         run: |
           dir
-          cd ..
-          dir
+          cmake 
+          cmake --build
+          tree
+          cd
