@@ -16,11 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
      
-      - name: Format checker
-      - uses: ivanludvig/clang-format-action@v1.4
-      - env:
-          GITHUB_TOKEN: ${ { secrets.GITHUB_TOKEN } }
-     
       - name: Build
         run: |
           mkdir build
