@@ -38,6 +38,4 @@ jobs:
       - name: Unit test
         run: |
           dir
-          ls
           cmake
-          /builds/libraries/hal/test/test --gtest_output="xml:report.xml"
