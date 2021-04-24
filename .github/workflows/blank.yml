@@ -39,6 +39,6 @@ jobs:
         run: |
           dir
           cmake 
-          cmake --build
+          cmake --build .
           tree
           cd
