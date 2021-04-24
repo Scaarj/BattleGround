@@ -9,10 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Clang Code Formatter
-        uses: ivanludvig/clang-format-action@v1.4
-        env:
-          GITHUB_TOKEN: ${ { secrets.GITHUB_TOKEN } }
       - name: Build
         run: |
           mkdir build
