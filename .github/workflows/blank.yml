@@ -28,6 +28,7 @@ jobs:
     steps:
       - name: Run tests
         run: |
+            tree
             build/test/test --gtest_output="xml:report.xml"
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
