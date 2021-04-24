@@ -12,13 +12,19 @@ jobs:
       - uses: actions/checkout@v2
       - name: Clang format apply
         run: |
-          git diff -U0 --no-color main | clang-format-diff -p1 -style file | tee format_diff.diff
+          git diff -U0 --no-color main | clang-format-diff -p1 -style file | tee format.diff
           dir
       - name: Search diff
-        if: hashFiles('formaiff.diff') != ''
-        run:
-          echo File exist!
-
+        if: hashFiles('format.diff') != ''
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_name: program-name-${{ matrix.config.os }}
+          asset_path: ./ormat.diff
+          asset_content_type: application/octet-stream
+    
   build:
     name: Build
     runs-on: ubuntu-latest
