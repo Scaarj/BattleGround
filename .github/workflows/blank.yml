@@ -34,11 +34,21 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-      
+     
       - name: Unit test
         run: |
           mkdir build
           cd build
           cmake ..
           cmake --build .
-          test/test --gtest_output="xml:report.xml"
+          
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Test
+      uses: skx/github-action-tester@master
+            build/test/test --gtest_output="xml:report.xml"
+            tree
+      
