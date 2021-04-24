@@ -17,6 +17,7 @@ jobs:
       - name: Search diff
         if: hashFiles('format.diff') != ''
         run: |
+          tree
           zip --junk-paths my-artifact format.diff
       - name: Create Release
         id: create_release
