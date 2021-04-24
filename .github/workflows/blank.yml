@@ -9,9 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Format checker
+      - name: Start format checker
+        uses: yaishenka/docker-codestyle-checker@v1
+      - name: Apply format checker
         run: |
-            echo Format checker here..
+            - git fetch
+            - git diff -U0 --no-color  origin/master | clang-format-diff -p1 -style file | tee format_diff.diff
+            - if [[ -s format_diff.diff ]]; then false; fi
+        if: always()
       - name: Build
         run: |
           mkdir build
