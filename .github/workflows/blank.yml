@@ -1,33 +1,26 @@
 name: CI
-
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
   workflow_dispatch:
-
 jobs:   
   build:
     name: Build
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-     
       - name: Build
         run: |
           mkdir build
           cd build
           cmake ..
-          cmake --build .
-        
+          cmake --build .  
       - name: Run tests
         run: |
             build/test/test --gtest_output="xml:report.xml"
-            tree
-            
+            tree 
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
