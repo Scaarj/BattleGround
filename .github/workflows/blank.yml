@@ -42,4 +42,3 @@ jobs:
           cmake ..
           cmake --build .
           test/test --gtest_output="xml:report.xml"
-          tree
