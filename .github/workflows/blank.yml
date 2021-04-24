@@ -37,11 +37,9 @@ jobs:
       
       - name: Unit test
         run: |
-          dir
           mkdir build
           cd build
           cmake ..
-          cd test
-          dir
-          test --gtest_output="xml:report.xml"
+          cmake build .
+          test/test --gtest_output="xml:report.xml"
           dir
