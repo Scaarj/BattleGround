@@ -14,7 +14,8 @@ jobs:
         run: |
           git diff -U0 --no-color | clang-format-diff -p1 -style file | tee format.diff
           cat format.diff
-          tree
+          dir
+          cd source
       - name: Upload format.diff
         uses: actions/upload-artifact@v2
         with:
