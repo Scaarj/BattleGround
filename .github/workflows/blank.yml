@@ -12,7 +12,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Clang format apply
         run: |
-            git diff -U0 --no-color master | clang-format-diff -p1 -style file | tee format.diff
+            git status
+            git diff -U0 --no-color feature_4 | clang-format-diff -p1 -style file | tee format.diff
       - name: Upload format
         uses: actions/upload-artifact@v2
         with:
