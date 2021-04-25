@@ -14,10 +14,7 @@ jobs:
         run: |
             git fetch
             git diff -U0 --no-color origin/main | clang-format-diff -p1 -style file | tee format.diff
-            if [[ -s format.diff ]]; then exit 0; fi
-      - name: Fail
-        run: |
-          exit 0
+            if [[ -s format.diff ]]; then ___; fi
       - name: Upload format
         uses: actions/upload-artifact@v2
         if: failure()
