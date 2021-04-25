@@ -12,8 +12,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Clang format apply
         run: |
-          git fetch
-          git diff -U0 --no-color | clang-format-diff -p1 -style file | tee format.diff
+          dir
+          git diff -U0 --no-color | clang-format-diff -p1 -v | tee format.diff
           cat format.diff
       - name: Upload format.diff
         uses: actions/upload-artifact@v2
