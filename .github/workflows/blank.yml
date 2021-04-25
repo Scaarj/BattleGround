@@ -13,7 +13,7 @@ jobs:
       - name: Clang format apply
         run: |
             git status
-            git diff -U0 --no-color feature_4 | clang-format-diff -p1 -style file | tee format.diff
+            git diff -U0 --no-color origin/issue-7 | clang-format-diff -p1 -style file | tee format.diff
       - name: Upload format
         uses: actions/upload-artifact@v2
         with:
