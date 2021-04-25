@@ -14,13 +14,7 @@ jobs:
         run: |
           git diff -U0 --no-color | clang-format-diff -p1 -style file | tee format.diff
           cat format.diff
-      - uses: actions/upload-artifact@v2
-      - name: Upload format.diff
-        with:
-          name: format.diff
-          path: format.diff
- 
-    
+          
   build:
     name: Build
     runs-on: ubuntu-latest
