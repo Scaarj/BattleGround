@@ -16,6 +16,8 @@ jobs:
           dir
       - name: Search diff
         if: hashFiles('format.diff') != ''
+        run: |
+          echo diff ready
       - uses: actions/upload-artifact@v2
         with:
           name: format.diff
