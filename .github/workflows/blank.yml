@@ -17,6 +17,7 @@ jobs:
           dir
           cd test
           dir
+          cat example.cpp
       - name: Upload format.diff
         uses: actions/upload-artifact@v2
         with:
