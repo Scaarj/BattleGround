@@ -14,10 +14,7 @@ jobs:
         run: |
           git diff -U0 --no-color | clang-format-diff -p1 -style file | tee format.diff
           cat format.diff
-      - name: Search diff
-        if: hashFiles('format.diff') != ''
-        run: |
-          echo diff ready
+      - name: Upload format.diff
       - uses: actions/upload-artifact@v2
         with:
           name: format.diff
