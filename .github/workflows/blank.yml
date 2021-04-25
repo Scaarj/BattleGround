@@ -16,6 +16,7 @@ jobs:
           cat format.diff
           dir
           cd source
+          dir
       - name: Upload format.diff
         uses: actions/upload-artifact@v2
         with:
