@@ -13,7 +13,7 @@ jobs:
       - name: Clang format apply
         run: |
           git diff -U0 --no-color | clang-format-diff -p1 -style file | tee format.diff
-          dir
+          cat format.diff
       - name: Search diff
         if: hashFiles('format.diff') != ''
         run: |
