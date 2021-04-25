@@ -13,6 +13,7 @@ jobs:
       - name: Clang format apply
         run: |
           git diff -U0 --no-color | clang-format-diff -p1 -style file | tee format.diff
+          echo hello > format.diff
       - name: Upload format.diff
         uses: actions/upload-artifact@v2
         with:
