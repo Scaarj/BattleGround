@@ -2,18 +2,30 @@
 
 using namespace engine::math;
 
-vector2d::vector2d() {}
+Vector2d::Vector2d() : _x(0), _y(0) {}
 
-vector2d &vector2d::operator+(const vector2d &add) {
+Vector2d::Vector2d(float x, float y) : _x(x), _y(y) {}
+
+Vector2d &Vector2d::operator+(const Vector2d &add) {
   this->_x += add._x;
   this->_y += add._y;
   return *this;
 }
 
-bool vector2d::operator==(const vector2d &other) const {
+Vector2d &Vector2d::operator+=(const Vector2d &other) {
+  return (*this + other);
+}
+
+Vector2d Vector2d::operator*(float val) {
+  this->_x *= val;
+  this->_y *= val;
+  return *this;
+}
+
+bool Vector2d::operator==(const Vector2d &other) const {
   return _x == other._x && _y == other._y;
 }
 
-bool vector2d::operator!=(const vector2d &other) const {
+bool Vector2d::operator!=(const Vector2d &other) const {
   return !(*this == other);
 }

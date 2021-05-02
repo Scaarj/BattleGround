@@ -1,16 +1,18 @@
 #pragma once
 
 namespace engine::math {
-class vector2d {
+class Vector2d {
  public:
-  explicit vector2d();
-  explicit vector2d(float x, float y) : _x(x), _y(y) {}
-  vector2d(const vector2d &) = default;
-  vector2d &operator=(const vector2d &) = default;
-  vector2d &operator+(const vector2d &);
+  explicit Vector2d();
+  explicit Vector2d(float x, float y);
+  Vector2d(const Vector2d &) = default;
+  Vector2d &operator=(const Vector2d &) = default;
+  Vector2d &operator+(const Vector2d &);
+  Vector2d &operator+=(const Vector2d &);
+  Vector2d operator*(float);
 
-  bool operator==(const vector2d &) const;
-  bool operator!=(const vector2d &) const;
+  bool operator==(const Vector2d &) const;
+  bool operator!=(const Vector2d &) const;
 
  private:
   float _x, _y;
