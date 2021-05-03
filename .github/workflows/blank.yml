@@ -37,6 +37,7 @@ jobs:
           cmake --build .  
       - name: Run tests
         run: |
+            dir
             build/test/test --gtest_output="xml:report.xml"
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
