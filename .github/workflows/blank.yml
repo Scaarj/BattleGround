@@ -26,6 +26,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install tree
+        run: |
+          sudo apt install tree 
       - name: Install boost
         run: |
           sudo apt-get install libboost-all-dev
@@ -37,11 +40,7 @@ jobs:
           cmake --build .  
       - name: Run tests
         run: |
-            dir
-            cd build
-            dir
-            cd test
-            dir
+            tree
             build/test/BattleGround_tst --gtest_output="xml:report.xml"
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
