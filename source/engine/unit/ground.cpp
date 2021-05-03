@@ -2,9 +2,7 @@
 
 using namespace engine::unit;
 
-Ground::Ground(Unit* unit) : actionWalk(unit), actionIdle(nullptr) {
-  actionIdle = (actions::Idle*)unit->idleAction();
-}
+Ground::Ground(Unit* unit) : actionWalk(unit) {}
 
 void Ground::walk() { actionWalk.start(); }
 

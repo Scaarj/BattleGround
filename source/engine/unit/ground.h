@@ -1,6 +1,5 @@
 #pragma once
 
-#include "actions/idle.h"
 #include "actions/walk.h"
 #include "unit.h"
 
@@ -14,7 +13,6 @@ class Ground {
 
  public:
   actions::Walk actionWalk;
-  actions::Idle* actionIdle;
 };
 
 }  // namespace engine::unit

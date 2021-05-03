@@ -12,15 +12,18 @@ class Action {
   boost::signals2::signal<void(int)> OnTimeTick;
 
  public:
-  Action(Unit* unit) : _unit(unit) {}
+  Action(Unit* unit) : _unit(unit), _interruptible(true) {}
   virtual ~Action() {}
   virtual void start();
   virtual void stop();
   virtual void timeTick(float time) = 0;
   bool iSstart() { return _isStart; }
 
+  bool interruptible() const;
+
  protected:
   bool _isStart;
+  bool _interruptible;
   Unit* _unit;
 };
 

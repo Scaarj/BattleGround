@@ -15,18 +15,14 @@ class Unit : public Object {
   math::Vector2d direction() const;
   void setDirection(const math::Vector2d& direction);
   void timeTick(float time);
-  void* currentAction() const;
-  void setCurrentAction(void* currentAction);
-  void* nextAction() const;
-  void setNextAction(void* nextAction);
-  void* idleAction() const;
+  void startAction(void* action);
+  void stopAction(void* action);
 
  protected:
   Type _type;
   math::Vector2d _position;
   math::Vector2d _direction;
   void* _currentAction;
-  void* _nextAction;
   void* _idleAction;
 };
 }  // namespace engine::unit

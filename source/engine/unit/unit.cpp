@@ -9,7 +9,6 @@ using namespace engine::math;
 Unit::Unit(ObjectSize::SizeType size, Type type) : Object(size), _type(type) {
   _idleAction = new actions::Idle(this);
   _currentAction = _idleAction;
-  _nextAction = nullptr;
 }
 
 Unit::~Unit() {
@@ -18,7 +17,6 @@ Unit::~Unit() {
     _idleAction = nullptr;
   }
   _currentAction = nullptr;
-  _nextAction = nullptr;
 }
 
 Type Unit::type() const { return _type; }
@@ -37,14 +35,19 @@ void Unit::timeTick(float time) {
   }
 }
 
-void *Unit::currentAction() const { return _currentAction; }
-
-void Unit::setCurrentAction(void *currentAction) {
-  _currentAction = currentAction;
+void Unit::startAction(void *action) {
+  if (_currentAction == _idleAction) {
+    _currentAction = action;
+  } else {
+    Action *action = (Action *)_currentAction;
+    if (action->interruptible()) {
+      _currentAction = action;
+    }
+  }
 }
 
-void *Unit::nextAction() const { return _nextAction; }
-
-void Unit::setNextAction(void *nextAction) { _nextAction = nextAction; }
-
-void *Unit::idleAction() const { return _idleAction; }
+void Unit::stopAction(void *action) {
+  if (_currentAction == action) {
+    _currentAction = _idleAction;
+  }
+}
