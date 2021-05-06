@@ -35,6 +35,7 @@ jobs:
       - name: Submodules update
         run: |
           git submodule update --recursive
+          tree
       - name: Build
         run: |
           mkdir build
