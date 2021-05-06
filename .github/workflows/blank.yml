@@ -35,6 +35,9 @@ jobs:
       - name: Submodules init update
         run: |
           git submodule update --init --recursive
+      - name: Box2d dependiec installing
+        run: |
+          sudo apt-get install xorg-dev libglu1-mesa-dev
       - name: Build
         run: |
           mkdir build
