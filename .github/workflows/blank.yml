@@ -32,12 +32,9 @@ jobs:
       - name: Install boost
         run: |
           sudo apt-get install libboost-all-dev
-      - name: Submodules init update
+      - name: Install Box2D
         run: |
-          git submodule update --init --recursive
-      - name: Box2d dependiec installing
-        run: |
-          sudo apt-get install xorg-dev libglu1-mesa-dev
+          sudo apt-get install libbox2d-dev
       - name: Build
         run: |
           mkdir build
