@@ -23,5 +23,7 @@ endif()
 #find_package(Qt5Widgets REQUIRED)
 
 include_directories(source)
+include_directories(source/third_party/box2d/include)
 add_subdirectory(source)
 add_subdirectory(test)
+add_subdirectory(source/third_party/box2d)
