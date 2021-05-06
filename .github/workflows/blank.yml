@@ -32,6 +32,9 @@ jobs:
       - name: Install boost
         run: |
           sudo apt-get install libboost-all-dev
+      - name: Submodules update
+        run: |
+          git submodule update --recursive
       - name: Build
         run: |
           mkdir build
