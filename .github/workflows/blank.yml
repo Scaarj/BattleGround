@@ -26,19 +26,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install tree
+        run: |
+          sudo apt install tree 
       - name: Install boost
         run: |
           sudo apt-get install libboost-all-dev
+      - name: Install Box2D
+        run: |
+          sudo apt-get install libbox2d-dev
       - name: Build
         run: |
           mkdir build
           cd build
           cmake ..
-          cmake --build .  
+          cmake --build .
       - name: Run tests
         run: |
-            dir
-            build/test/test --gtest_output="xml:report.xml"
+            build/test/BattleGround_tst --gtest_output="xml:report.xml"
       - name: Publish Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()

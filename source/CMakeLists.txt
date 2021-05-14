@@ -1,9 +1,11 @@
-cmake_minimum_required(VERSION 3.14)
-project(BattleGround LANGUAGES CXX)
+set(BINARY ${CMAKE_PROJECT_NAME})
 
-file(GLOB_RECURSE SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
-file(GLOB_RECURSE HEADER ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+include_directories(${CMAKE_CURRENT_LIST_DIR})
 
-add_executable(BattleGround ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp ${SOURCE} ${HEADER})
+file(GLOB_RECURSE SOURCES *.h *.cpp)
+set(SOURCES ${SOURCES})
 
-add_compile_definitions(BattleGround)
+add_executable(${BINARY}_run ${SOURCES})
+
+add_library(${BINARY}_lib STATIC ${SOURCES} ${Boost_LIBRARIES})
+target_link_libraries(${BINARY}_run Box2D)
