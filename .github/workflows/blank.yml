@@ -31,8 +31,7 @@ jobs:
           sudo apt install tree
       - name: Install qt
         run: |
-	  sudo apt-get install qt5-default 
-
+          sudo apt-get install qt5-default 
       - name: Install boost
         run: |
           sudo apt-get install libboost-all-dev
