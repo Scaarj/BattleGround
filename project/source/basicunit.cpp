@@ -1,6 +1,3 @@
 #include "basicunit.h"
 
-BasicUnit::BasicUnit()
-{
-
-}
+BasicUnit::BasicUnit() {}
