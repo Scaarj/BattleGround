@@ -1,4 +1,3 @@
-set(BINARY ${CMAKE_PROJECT_NAME}_tst)
 include (FetchContent)
 
 FetchContent_Declare(
@@ -9,8 +8,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 file(GLOB_RECURSE TEST_SOURCES *.h *.cpp)
-set(SOURCES ${TEST_SOURCES})
 
-add_executable(${BINARY} ${TEST_SOURCES})
-add_test(NAME ${BINARY} COMMAND ${BINARY})
-target_link_libraries(${BINARY} PUBLIC gtest_main gmock ${CMAKE_PROJECT_NAME}_lib)
+add_executable(${PROJECT_TESTS} ${TEST_SOURCES} ${TEST_SOURCES})
+add_test(NAME ${PROJECT_TESTS} COMMAND ${PROJECT_TESTS})
+target_link_libraries(${PROJECT_TESTS} PUBLIC gtest_main gmock ${PROJECT_LIBRARY})
