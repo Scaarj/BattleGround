@@ -5,7 +5,6 @@
         <file>qml/ObjectBall.qml</file>
         <file>qml/ObjectCreation.js</file>
         <file>qml/qtquickcontrols2.conf</file>
-        <file>resource/images/ball.jpeg</file>
         <file>resource/images/ball.png</file>
     </qresource>
 </RCC>
