@@ -2,9 +2,6 @@
 
 #include "basicunit.h"
 
-TEST(Example, OnePlusOne) { ASSERT_EQ(1 + 1, 2); }
+#include "world.h"
 
-TEST(BasicUnit, IsReady) {
-  BasicUnit obj;
-  ASSERT_TRUE(obj.isReady());
-}
+TEST(Example, OnePlusOne) { ASSERT_EQ(1 + 1, 2); }

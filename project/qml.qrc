@@ -1,6 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>qtquickcontrols2.conf</file>
+        <file>qml/GraphicContext.qml</file>
+        <file>qml/MainWindow.qml</file>
+        <file>qml/ObjectBall.qml</file>
+        <file>qml/ObjectCreation.js</file>
+        <file>qml/qtquickcontrols2.conf</file>
+        <file>resource/images/ball.jpeg</file>
+        <file>resource/images/ball.png</file>
     </qresource>
 </RCC>
