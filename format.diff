@@ -1,0 +1,20 @@
+--- project/main.cpp	(before formatting)
++++ project/main.cpp	(after formatting)
+@@ -14,11 +14,12 @@
+ 
+   QQmlApplicationEngine engine;
+   const QUrl url(QStringLiteral("qrc:/qml/MainWindow.qml"));
+-  QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app,
+-                   [url](QObject *obj, const QUrl &objUrl) {
+-                     if (!obj && url == objUrl) QCoreApplication::exit(-1);
+-                   },
+-                   Qt::QueuedConnection);
++  QObject::connect(
++      &engine, &QQmlApplicationEngine::objectCreated, &app,
++      [url](QObject *obj, const QUrl &objUrl) {
++        if (!obj && url == objUrl) QCoreApplication::exit(-1);
++      },
++      Qt::QueuedConnection);
+   QQmlContext *context = engine.rootContext();
+   context->setContextProperty("World", &world);
+   engine.load(url);
