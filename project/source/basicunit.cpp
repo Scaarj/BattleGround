@@ -18,6 +18,6 @@ BasicUnit::BasicUnit(b2World& world, float x, float y) {
 
 b2Body* BasicUnit::body() const { return _body; }
 
-float BasicUnit::width() const { return _width; }
+float BasicUnit::width() const { return _dynamicBox.m_radius; }
 
-float BasicUnit::height() const { return _height; }
+float BasicUnit::height() const { return _dynamicBox.m_radius; }

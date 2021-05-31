@@ -7,7 +7,9 @@
 #include <map>
 #include <memory>
 
+#include "environmentfactory.h"
 #include "unitfactory.h"
+#include "wall.h"
 
 class World : public QObject {
   Q_OBJECT
@@ -26,7 +28,9 @@ class World : public QObject {
 
  signals:
   void createObject(int, float);
-  void moveObjectTo(int, float, float, float);
+  void updateObject(int, float, float, float);
+
+  void createStaticObject(int, float, float, float, float);
 
  public slots:
   void onTick();
@@ -37,12 +41,11 @@ class World : public QObject {
   QTimer _timer;
 
   std::map<int, std::shared_ptr<BasicUnit>> _units;
+  std::map<int, std::shared_ptr<Wall>> _blocks;
+
   int _unitIndex;
 
   b2World _world;
   UnitFactory _factory;
-
-  b2BodyDef groundBodyDef;
-  b2Body* groundBody;
-  b2PolygonShape groundBox;
+  EnvironmentFactory _environmentFactory;
 };

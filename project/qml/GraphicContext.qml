@@ -17,8 +17,12 @@ Rectangle {
             ObjectCreationScript.createObjects(id, width)
         }
 
-        function onMoveObjectTo(id, x, y, angle) {
+        function onUpdateObject(id, x, y, angle) {
             ObjectCreationScript.moveObject(id, x, y, angle)
+        }
+
+        function onCreateStaticObject(id, x, y, width, height) {
+            ObjectCreationScript.createStaticObjects(id, x, y, width, height)
         }
     }
 }

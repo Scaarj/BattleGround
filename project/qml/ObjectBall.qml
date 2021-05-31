@@ -5,7 +5,6 @@ Item {
     property alias rotationPos: rotationPos
     function rotate(angle) {
         var angleRad = angle * (180 / 3.14)
-       // console.log(angleRad)
         rotationPos.angle = angleRad
     }
 
@@ -14,7 +13,7 @@ Item {
         source: "qrc:/resource/images/ball.png"
         transform: Rotation {
             id: rotationPos
+            origin.x: width / 2; origin.y: height / 2;
         }
     }
-
 }

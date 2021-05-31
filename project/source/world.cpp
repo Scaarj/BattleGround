@@ -4,13 +4,20 @@
 #include <memory>
 
 World::World(QObject* parent)
-    : QObject(parent), _world(b2Vec2(0.0f, gravity)), _factory(_world, this) {}
+    : QObject(parent),
+      _world(b2Vec2(0.0f, gravity)),
+      _factory(_world, this),
+      _environmentFactory(_world, this) {}
 
 void World::createFloor() {
-  groundBodyDef.position.Set(0.f, 500.f);
-  groundBody = _world.CreateBody(&groundBodyDef);
-  groundBox.SetAsBox(800.f, 10.f);
-  groundBody->CreateFixture(&groundBox, 0.0f);
+  _blocks[_unitIndex] =
+      std::shared_ptr<Wall>(_environmentFactory.create(0, 500, 800, 10));
+  auto block = _blocks[_unitIndex];
+  b2Body* body = block->body();
+  b2Vec2 basePosition = body->GetPosition();
+  emit createStaticObject(_unitIndex, basePosition.x, basePosition.y,
+                          block->width() + 20, block->height());
+  _unitIndex++;
 }
 
 void World::init() {
@@ -33,7 +40,7 @@ void World::onTick() {
     auto body = it.second.get()->body();
     b2Vec2 position = body->GetPosition();
     float angle = body->GetAngle();
-    emit moveObjectTo(index, position.x, position.y, angle);
+    emit updateObject(index, position.x, position.y, angle);
   }
 
   _timer.start();
@@ -45,7 +52,7 @@ void World::createBall(float x, float y) {
   b2Vec2 basePosition = body->GetPosition();
   float baseAngle = body->GetAngle();
   emit createObject(_unitIndex, _units[_unitIndex]->width());
-  emit moveObjectTo(_unitIndex, basePosition.x, basePosition.y, baseAngle);
+  emit updateObject(_unitIndex, basePosition.x, basePosition.y, baseAngle);
   _unitIndex++;
 }
 
