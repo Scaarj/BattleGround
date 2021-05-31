@@ -1,8 +1,8 @@
 #include "basicunit.h"
 
 BasicUnit::BasicUnit(b2World& world, float x, float y) {
-  _width = 0.2f;
-  _height = 0.2f;
+  _width = 20.f;
+  _height = 20.f;
 
   _bodyDef.type = b2_dynamicBody;
   _bodyDef.position.Set(x - _width, y - _height);

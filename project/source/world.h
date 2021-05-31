@@ -9,17 +9,20 @@
 
 #include "unitfactory.h"
 
-#define WORLD_GRAVITY 9.8
-
 class World : public QObject {
   Q_OBJECT
 
-  constexpr static float ratio = 100;
+ public:
+  static constexpr float gravity = 500.f;
+  static constexpr float framePerSecond = 60;
+  static constexpr float timeStep = 1.f / framePerSecond;
+  static constexpr int velocityIterations = 100;
+  static constexpr int positionIterations = 100;
 
  public:
   explicit World(QObject* parent = nullptr);
-
   void init();
+  void createFloor();
 
  signals:
   void createObject(int, float);
@@ -42,8 +45,4 @@ class World : public QObject {
   b2BodyDef groundBodyDef;
   b2Body* groundBody;
   b2PolygonShape groundBox;
-
-  float timeStep;
-  int32 velocityIterations;
-  int32 positionIterations;
 };
