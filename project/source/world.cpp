@@ -9,14 +9,11 @@ World::World(QObject* parent)
       _factory(_world, this),
       _environmentFactory(_world, this) {}
 
-void World::createFloor() {
-  _blocks[_unitIndex] =
-      std::shared_ptr<Wall>(_environmentFactory.create(0, 500, 800, 10));
+void World::createFloor(float x, float y, float width, float height) {
+  _blocks[_unitIndex] = _environmentFactory.create(x, y, width, height);
   auto block = _blocks[_unitIndex];
-  b2Body* body = block->body();
-  b2Vec2 basePosition = body->GetPosition();
-  emit createStaticObject(_unitIndex, basePosition.x, basePosition.y,
-                          block->width() + 20, block->height());
+  emit createStaticObject(_unitIndex, block->x(), block->y(), block->width(),
+                          block->height());
   _unitIndex++;
 }
 
@@ -25,7 +22,10 @@ void World::init() {
   _timer.start();
   connect(&_timer, &QTimer::timeout, this, &World::onTick);
 
-  createFloor();
+  createFloor(400, 500, 400, 40);
+  createFloor(0, 0, 20, 500);
+  createFloor(780, 200, 20, 300);
+  createFloor(400, 200, 200, 60);
 }
 
 void World::onTick() {
@@ -37,27 +37,36 @@ void World::onTick() {
 
   for (auto& it : _units) {
     int index = it.first;
-    auto body = it.second.get()->body();
-    b2Vec2 position = body->GetPosition();
-    float angle = body->GetAngle();
-    emit updateObject(index, position.x, position.y, angle);
+    auto body = it.second;
+    emit updateObject(index, body->x(), body->y(), body->angle());
   }
 
   _timer.start();
 }
 
-void World::createBall(float x, float y) {
-  _units[_unitIndex] = std::shared_ptr<BasicUnit>(_factory.createBall(x, y));
-  b2Body* body = _units[_unitIndex]->body();
-  b2Vec2 basePosition = body->GetPosition();
-  float baseAngle = body->GetAngle();
-  emit createObject(_unitIndex, _units[_unitIndex]->width());
-  emit updateObject(_unitIndex, basePosition.x, basePosition.y, baseAngle);
+void World::createBall(float x, float y, float radius) {
+  _units[_unitIndex] = _factory.createBall(x, y, radius);
+  auto unit = _units[_unitIndex];
+  emit createBallObject(_unitIndex, _units[_unitIndex]->width());
+  emit updateObject(_unitIndex, unit->x(), unit->y(), unit->angle());
+  _unitIndex++;
+}
+
+void World::createBox(float x, float y, float width, float height) {
+  _units[_unitIndex] = _factory.createBox(x, y, width, height);
+  auto unit = _units[_unitIndex];
+  emit createBoxObject(_unitIndex, _units[_unitIndex]->width());
+  emit updateObject(_unitIndex, unit->x(), unit->y(), unit->angle());
   _unitIndex++;
 }
 
 void World::createOnClick(int x, int y) {
-  float scalledX = (float)x;
-  float scalledY = (float)y;
-  createBall(scalledX, scalledY);
+  float size = 40.f;
+  createBall(x, y, size);
+}
+
+void World::createOnRightClick(int x, int y) {
+  float width = 40.f;
+  float height = 40.f;
+  createBox(x, y, width, height);
 }

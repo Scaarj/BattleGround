@@ -7,5 +7,6 @@
         <file>qml/qtquickcontrols2.conf</file>
         <file>resource/images/ball.png</file>
         <file>qml/ObjectWall.qml</file>
+        <file>qml/ObjectBox.qml</file>
     </qresource>
 </RCC>

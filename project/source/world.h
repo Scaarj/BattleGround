@@ -24,24 +24,28 @@ class World : public QObject {
  public:
   explicit World(QObject* parent = nullptr);
   void init();
-  void createFloor();
+  void createFloor(float x, float y, float width, float height);
 
  signals:
-  void createObject(int, float);
+  void createBallObject(int, float);
+  void createBoxObject(int, float);
   void updateObject(int, float, float, float);
 
   void createStaticObject(int, float, float, float, float);
 
  public slots:
   void onTick();
-  void createBall(float, float);
+  void createBall(float x, float y, float radius);
+  void createBox(float x, float y, float width, float height);
+
   void createOnClick(int, int);
+  void createOnRightClick(int, int);
 
  private:
   QTimer _timer;
 
-  std::map<int, std::shared_ptr<BasicUnit>> _units;
-  std::map<int, std::shared_ptr<Wall>> _blocks;
+  std::map<int, BasicUnit*> _units;
+  std::map<int, Wall*> _blocks;
 
   int _unitIndex;
 

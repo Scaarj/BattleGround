@@ -2,16 +2,14 @@
 
 #include "basicunit.h"
 
-class Ball : public BasicUnit {
+class Box : public BasicUnit {
  public:
-  Ball(b2World& world, float x, float y, float radius);
-
+  Box(b2World& world, float x, float y, float width, float height);
   virtual float halfWidth() const override;
   virtual float halfHeight() const override;
-  float radius() const;
 
  public:
-  b2CircleShape _dynamicBox;
+  float _halfWidth, _halfHeight;
+  b2PolygonShape _dynamicBox;
   b2FixtureDef _fixtureDef;
-  float _radius;
 };

@@ -13,8 +13,12 @@ Rectangle {
     Connections {
         target: World
 
-        function onCreateObject(id, width, height) {
-            ObjectCreationScript.createObjects(id, width)
+        function onCreateBallObject(id, radius) {
+            ObjectCreationScript.createObjects(id, radius)
+        }
+
+        function onCreateBoxObject(id, width, height) {
+           ObjectCreationScript.createBoxObjects(id, width, height)
         }
 
         function onUpdateObject(id, x, y, angle) {

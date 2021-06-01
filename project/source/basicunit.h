@@ -4,18 +4,19 @@
 
 class BasicUnit {
  public:
-  BasicUnit(b2World& world, float, float);
+  BasicUnit(b2World& world, float x, float y);
 
-  b2Body* body() const;
-
+  float x() const;
+  float y() const;
+  float angle() const;
   float width() const;
-
   float height() const;
 
- private:
-  b2BodyDef _bodyDef;
+ protected:
+  virtual float halfWidth() const = 0;
+  virtual float halfHeight() const = 0;
+
+ protected:
   b2Body* _body;
-  b2CircleShape _dynamicBox;
-  b2FixtureDef _fixtureDef;
-  float _width, _height;
+  b2BodyDef _bodyDef;
 };

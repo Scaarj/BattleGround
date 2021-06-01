@@ -1,23 +1,17 @@
 #include "basicunit.h"
 
 BasicUnit::BasicUnit(b2World& world, float x, float y) {
-  _width = 20.f;
-  _height = 20.f;
-
   _bodyDef.type = b2_dynamicBody;
-  _bodyDef.position.Set(x - _width, y - _height);
+  _bodyDef.position.Set(x, y);
   _body = world.CreateBody(&_bodyDef);
-  _dynamicBox.m_radius = _width;
-
-  _fixtureDef.shape = &_dynamicBox;
-  _fixtureDef.density = 0.3f;
-  _fixtureDef.friction = 1.0f;
-  _body->CreateFixture(&_fixtureDef);
-  _body->GetFixtureList();
 }
 
-b2Body* BasicUnit::body() const { return _body; }
+float BasicUnit::x() const { return _body->GetPosition().x - halfWidth(); }
 
-float BasicUnit::width() const { return _dynamicBox.m_radius; }
+float BasicUnit::y() const { return _body->GetPosition().y - halfHeight(); }
 
-float BasicUnit::height() const { return _dynamicBox.m_radius; }
+float BasicUnit::angle() const { return _body->GetAngle(); }
+
+float BasicUnit::width() const { return halfWidth(); }
+
+float BasicUnit::height() const { return halfHeight(); }
