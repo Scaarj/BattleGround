@@ -1,7 +1,5 @@
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 
-file(GLOB_RECURSE PROJECT_SOURCES source/*.cpp)
-file(GLOB_RECURSE PROJECT_HEADERS source/*.h)
 set(QT_DEPENDIES
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Quick
@@ -9,6 +7,9 @@ set(QT_DEPENDIES
     Qt${QT_VERSION_MAJOR}::Qml
     )
 set(QML_FILES qml.qrc)
+
+file(GLOB_RECURSE PROJECT_SOURCES source/*.cpp)
+file(GLOB_RECURSE PROJECT_HEADERS source/*.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(${PROJECT_NAME}
@@ -30,10 +31,7 @@ else()
     endif()
 endif()
 
-add_library(${PROJECT_LIBRARY}
-    STATIC
-    ${PROJECT_SOURCES}
-    )
+add_library(${PROJECT_LIBRARY} STATIC ${PROJECT_SOURCES})
 
 target_compile_definitions(${PROJECT_NAME}
   PUBLIC $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
