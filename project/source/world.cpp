@@ -22,7 +22,7 @@ void World::init() {
   _timer.start();
   connect(&_timer, &QTimer::timeout, this, &World::onTick);
 
-  createFloor(400, 500, 400, 40);
+  createFloor(0, 500, 800, 40);
   createFloor(0, 0, 20, 500);
   createFloor(780, 200, 20, 300);
   createFloor(400, 200, 200, 60);
@@ -55,18 +55,19 @@ void World::createBall(float x, float y, float radius) {
 void World::createBox(float x, float y, float width, float height) {
   _units[_unitIndex] = _factory.createBox(x, y, width, height);
   auto unit = _units[_unitIndex];
-  emit createBoxObject(_unitIndex, _units[_unitIndex]->width());
+  emit createBoxObject(_unitIndex, _units[_unitIndex]->width(),
+                       _units[_unitIndex]->height());
   emit updateObject(_unitIndex, unit->x(), unit->y(), unit->angle());
   _unitIndex++;
 }
 
 void World::createOnClick(int x, int y) {
-  float size = 40.f;
+  float size = 20.f;
   createBall(x, y, size);
 }
 
 void World::createOnRightClick(int x, int y) {
-  float width = 40.f;
-  float height = 40.f;
+  float width = 80.f;
+  float height = 80.f;
   createBox(x, y, width, height);
 }

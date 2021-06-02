@@ -8,5 +8,6 @@
         <file>resource/images/ball.png</file>
         <file>qml/ObjectWall.qml</file>
         <file>qml/ObjectBox.qml</file>
+        <file>resource/images/box.png</file>
     </qresource>
 </RCC>

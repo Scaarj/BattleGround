@@ -27,11 +27,10 @@ class World : public QObject {
   void createFloor(float x, float y, float width, float height);
 
  signals:
-  void createBallObject(int, float);
-  void createBoxObject(int, float);
-  void updateObject(int, float, float, float);
-
-  void createStaticObject(int, float, float, float, float);
+  void createBallObject(int id, float radius);
+  void createBoxObject(int id, float width, float height);
+  void updateObject(int id, float x, float y, float angle);
+  void createStaticObject(int id, float x, float y, float width, float height);
 
  public slots:
   void onTick();

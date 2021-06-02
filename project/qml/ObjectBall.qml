@@ -1,5 +1,5 @@
-import QtQuick 2.15
-import QtQuick.Shapes 1.15
+import QtQuick 2.12
+import QtQuick.Shapes 1.12
 
 Item {
     property alias rotationPos: rotationPos
@@ -13,7 +13,8 @@ Item {
         source: "qrc:/resource/images/ball.png"
         transform: Rotation {
             id: rotationPos
-            origin.x: width / 2; origin.y: height / 2;
+            origin.x: width / 2
+            origin.y: height / 2
         }
     }
 }

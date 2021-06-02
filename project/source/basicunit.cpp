@@ -12,6 +12,6 @@ float BasicUnit::y() const { return _body->GetPosition().y - halfHeight(); }
 
 float BasicUnit::angle() const { return _body->GetAngle(); }
 
-float BasicUnit::width() const { return halfWidth(); }
+float BasicUnit::width() const { return halfWidth() * 2; }
 
-float BasicUnit::height() const { return halfHeight(); }
+float BasicUnit::height() const { return halfHeight() * 2; }

@@ -11,7 +11,7 @@ ApplicationWindow {
     anchors.fill: parent
     acceptedButtons: Qt.LeftButton | Qt.RightButton
     onClicked: {
-        if (mouse.button == Qt.LeftButton) {
+        if (mouse.button === Qt.LeftButton) {
             World.createOnClick(mouseX, mouseY)
         } else {
             World.createOnRightClick(mouseX, mouseY)
