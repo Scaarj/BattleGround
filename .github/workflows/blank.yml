@@ -26,6 +26,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install lcov
+        run: |
+          sudo apt install lcov
       - name: Install tree
         run: |
           sudo apt install tree
