@@ -9,7 +9,7 @@ Item {
 
     Image {
         anchors.fill: parent
-        source: "qrc:/resource/images/ball.png"
+        source: "qrc:/resource/images/box.png"
         transform: Rotation {
             id: rotationPos
             origin.x: width / 2

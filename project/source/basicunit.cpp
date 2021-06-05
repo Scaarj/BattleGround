@@ -1,23 +1,16 @@
 #include "basicunit.h"
 
-BasicUnit::BasicUnit(b2World& world, float x, float y) {
-  _width = 0.2f;
-  _height = 0.2f;
-
-  _bodyDef.type = b2_dynamicBody;
-  _bodyDef.position.Set(x - _width, y - _height);
-  _body = world.CreateBody(&_bodyDef);
-  _dynamicBox.m_radius = _width;
-
-  _fixtureDef.shape = &_dynamicBox;
-  _fixtureDef.density = 0.3f;
-  _fixtureDef.friction = 1.0f;
-  _body->CreateFixture(&_fixtureDef);
-  _body->GetFixtureList();
+BasicUnit::BasicUnit(const QString& type, b2World& world, float x, float y) {
+  _type = type;
+  _bodyDef.position.Set(x, y);
 }
 
-b2Body* BasicUnit::body() const { return _body; }
+float BasicUnit::x() const { return _body->GetPosition().x - width() / 2; }
 
-float BasicUnit::width() const { return _width; }
+float BasicUnit::y() const { return _body->GetPosition().y - height() / 2; }
 
-float BasicUnit::height() const { return _height; }
+float BasicUnit::angle() const { return _body->GetAngle(); }
+
+const QString& BasicUnit::type() const { return _type; }
+
+b2BodyType BasicUnit::bodyType() const { return _bodyDef.type; }

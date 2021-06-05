@@ -7,12 +7,37 @@ ApplicationWindow {
     visible: true
     title: qsTr("BattleGround")
 
-    MouseArea {
-    anchors.fill: parent
-    onClicked: {
-        World.createOnClick(mouseX, mouseY)
-    }
-    GraphicContext {}
+    property alias textHint: graphicContext.textHint
 
+    Text {
+        text: "Hello World!"
+        font.family: "Helvetica"
+        font.pointSize: 24
+        color: "red"
+    }
+
+    MouseArea {
+        id: mouseProperty
+        anchors.fill: parent
+        hoverEnabled: true
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+        onClicked: {
+            if (mouse.button == Qt.LeftButton) {
+                World.createOnLeftClick(mouseX, mouseY)
+            } else if (mouse.button == Qt.RightButton) {
+                World.createOnRightClick(mouseX, mouseY)
+            }
+        }
+
+        onPositionChanged: {
+            textHint.x = mouseX
+            textHint.y = mouseY + 20
+            textHint.text = qsTr(mouseX.toString() + " " + mouseY.toString())
+        }
+
+        GraphicContext {
+            id: graphicContext
+        }
     }
 }

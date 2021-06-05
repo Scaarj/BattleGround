@@ -33,5 +33,6 @@
 
 # Cmake
 *.user
-
+*.user.*
 build
+
