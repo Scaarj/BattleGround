@@ -59,7 +59,7 @@ jobs:
           lcov -c -d . -o coverage_output.info
           lcov -e coverage_output.info '*/project/source/*' -o coverage_final.info
           genhtml --prefix coverage_reports --ignore-errors source coverage_final.info --legend --title "commit SHA1" --output-directory=\coverage_reports
-      - uses: actions/upload-artifact@2.2.3
+      - uses: actions/upload-artifact@v2.2.3
         with:
           name: Coverage report
           path: coverage_reports
