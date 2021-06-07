@@ -58,8 +58,7 @@ jobs:
           sudo apt install lcov
           lcov -c -d . -o coverage_output.info
           lcov -e coverage_output.info '*/project/source/*' -o coverage_final.info
-          genhtml --prefix test_coverage_reports --ignore-errors source coverage_final.info --legend --title "commit SHA1" --output-directory=\test_coverage_reports
-      - uses: romeovs/lcov-reporter-action@v0.2.16
+      - uses: romeovs/lcov-reporter-action@v0.2.21
         with:
           lcov-file: ./coverage_final.info
 
