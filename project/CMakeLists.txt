@@ -10,46 +10,77 @@ set(QT_DEPENDIES
     )
 set(QML_FILES qml.qrc)
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(${PROJECT_NAME}
-        MANUAL_FINALIZATION
-        ${PROJECT_FILES}
-    )
-else()
-    if(ANDROID)
-        add_library(${PROJECT_NAME} SHARED
-            ${PROJECT_SOURCES}
-        )
-    else()
-        add_executable(${PROJECT_NAME}
-            main.cpp
-            ${PROJECT_HEADERS}
-            ${PROJECT_SOURCES}
-            ${QML_FILES}
-        )
-    endif()
-endif()
-
-add_library(${PROJECT_LIBRARY}
-    STATIC
-    ${PROJECT_SOURCES}
-    )
-
-target_compile_definitions(${PROJECT_NAME}
-  PUBLIC $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+add_library(${PROJECT_LIBRARY} STATIC ${PROJECT_SOURCES})
 
 target_link_libraries(${PROJECT_LIBRARY}
-  PUBLIC
-  ${QT_DEPENDIES}
-  ${Boost_LIBRARIES}
-  Box2D
-  )
-target_link_libraries(${PROJECT_NAME}
-  PUBLIC
-  ${PROJECT_LIBRARY}
-  )
+    PUBLIC
+    ${QT_DEPENDIES}
+    ${Boost_LIBRARIES}
+    Box2D
+    )
 
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_import_qml_plugins(${PROJECT_NAME})
-    qt_finalize_executable(${PROJECT_NAME})
-endif()
+add_executable(${PROJECT_NAME}
+    main.cpp
+    ${PROJECT_HEADERS}
+    ${PROJECT_SOURCES}
+    ${QML_FILES}
+    )
+
+set_target_properties(${PROJECT_LIBRARY}
+    PROPERTIES
+    COMPILE_FLAGS "-ftest-coverage -fprofile-arcs"
+    LINK_FLAGS    "-lgcov --coverage"
+    )
+
+target_link_libraries(${PROJECT_NAME}
+    PUBLIC
+    ${PROJECT_LIBRARY}
+    )
+
+#if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+#    qt_add_executable(${PROJECT_NAME}
+#        MANUAL_FINALIZATION
+#        main.cpp
+#        ${PROJECT_HEADERS}
+#        ${PROJECT_SOURCES}
+#        ${QML_FILES}
+#    )
+#else()
+#    add_executable(${PROJECT_NAME}
+#        main.cpp
+#        ${PROJECT_HEADERS}
+#        ${PROJECT_SOURCES}
+#        ${QML_FILES}
+#    )
+#endif()
+
+#add_library(${PROJECT_LIBRARY}
+#    STATIC
+#    ${PROJECT_SOURCES}
+#    ${PROJECT_HEADERS}
+#    )
+
+#set_target_properties(${PROJECT_LIBRARY}
+#    PROPERTIES
+#    COMPILE_FLAGS "-ftest-coverage -fprofile-arcs"
+#    LINK_FLAGS    "-lgcov --coverage")
+
+
+#target_compile_definitions(${PROJECT_NAME}
+#  PUBLIC $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+
+#target_link_libraries(${PROJECT_LIBRARY}
+#  PUBLIC
+#  ${QT_DEPENDIES}
+#  ${Boost_LIBRARIES}
+#  Box2D
+#  )
+#target_link_libraries(${PROJECT_NAME}
+#  PUBLIC
+#  ${PROJECT_LIBRARY}
+#  )
+
+#if(QT_VERSION_MAJOR EQUAL 6)
+#    qt_import_qml_plugins(${PROJECT_NAME})
+#    qt_finalize_executable(${PROJECT_NAME})
+#endif()

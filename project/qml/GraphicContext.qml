@@ -9,9 +9,11 @@ Rectangle {
 
     id: graphicContext
     anchors.fill: parent
-    color: "steelblue"
-    border.width: 10
-    border.color: "black"
+
+    Image {
+        anchors.fill: parent
+        source: "qrc:/resource/images/background1.png"
+    }
 
     Text {
         id: textHint

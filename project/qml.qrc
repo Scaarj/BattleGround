@@ -11,5 +11,6 @@
         <file>qml/ObjectWall.qml</file>
         <file>resource/images/brick.png</file>
         <file>resource/images/rock1.png</file>
+        <file>resource/images/background1.png</file>
     </qresource>
 </RCC>

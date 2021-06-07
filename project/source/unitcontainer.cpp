@@ -29,7 +29,8 @@ void UnitContainer::update() {
     int index = it.first;
     auto unit = it.second;
     if (unit->bodyType() != b2_staticBody) {
-      emit moveObjectTo(index, unit->x(), unit->y(), unit->angle());
+      emit moveObjectTo(index, unit->type(), unit->x(), unit->y(),
+                        unit->angle());
     }
   }
 }

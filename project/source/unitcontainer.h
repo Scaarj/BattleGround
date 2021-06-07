@@ -21,9 +21,7 @@ class UnitContainer : public QObject {
   void createObject(int id, const QString& type, float x, float y, float width,
                     float height);
 
-  void createObjectBall(int id, float x, float y, float width, float height);
-  void createObjectBox(int id, float x, float y, float width, float height);
-  void moveObjectTo(int id, float x, float y, float angle);
+  void moveObjectTo(int id, const QString& type, float x, float y, float angle);
 
  private:
   int _unitIndex;
