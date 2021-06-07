@@ -54,7 +54,7 @@ jobs:
         with:
           files: report.xml
       - name: Code coverage
-	run: |
+        run: |
           sudo apt install lcov
           lcov -c -d . -o coverage_output.info
           lcov -e coverage_output.info '*/project/source/*' -o coverage_filtred.info
