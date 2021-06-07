@@ -59,5 +59,7 @@ jobs:
           lcov -c -d . -o coverage_output.info
           lcov -e coverage_output.info '*/project/source/*' -o coverage_final.info
           genhtml --prefix coverage_reports --ignore-errors source coverage_final.info --legend --title "commit SHA1" --output-directory=\coverage_reports
-          cp -r coverage_reports docs/
+          tree
+          cp -r coverage_reports ./public
+          tree
   
