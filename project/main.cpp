@@ -14,11 +14,12 @@ int main(int argc, char *argv[]) {
 
   QQmlApplicationEngine engine;
   const QUrl url(QStringLiteral("qrc:/qml/MainWindow.qml"));
-  QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app,
-                   [url](QObject *obj, const QUrl &objUrl) {
-                     if (!obj && url == objUrl) QCoreApplication::exit(-1);
-                   },
-                   Qt::QueuedConnection);
+  QObject::connect(
+      &engine, &QQmlApplicationEngine::objectCreated, &app,
+      [url](QObject *obj, const QUrl &objUrl) {
+        if (!obj && url == objUrl) QCoreApplication::exit(-1);
+      },
+      Qt::QueuedConnection);
   QQmlContext *context = engine.rootContext();
   context->setContextProperty("World", &world);
   context->setContextProperty("Objects", &world._unitContainer);
