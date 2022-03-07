@@ -2,12 +2,12 @@
 
 #include "basicunit.h"
 
-class Ball : public BasicUnit {
+class Box : public BasicUnit {
  public:
-  Ball(b2World& word, float x, float y, float radius);
+  Box(b2World& word, float x, float y, float width, float height);
   virtual float width() const override;
   virtual float height() const override;
 
  private:
-  float _radius;
+  float _width, _height;
 };

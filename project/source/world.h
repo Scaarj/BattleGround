@@ -7,43 +7,37 @@
 #include <map>
 #include <memory>
 
+#include "unitcontainer.h"
 #include "unitfactory.h"
-
-#define WORLD_GRAVITY 9.8
 
 class World : public QObject {
   Q_OBJECT
 
-  constexpr static float ratio = 100;
+ public:
+  static constexpr float worldGravity = 100;
+  static constexpr float timeStep = 1.f / 60.f;
+  static constexpr int velocityIterations = 10;
+  static constexpr int positionIterations = 10;
 
  public:
   explicit World(QObject* parent = nullptr);
 
   void init();
 
- signals:
-  void createObject(int, float);
-  void moveObjectTo(int, float, float, float);
-
  public slots:
   void onTick();
-  void createBall(float, float);
-  void createOnClick(int, int);
+  void createBall(float x, float y, float radius);
+  void createBox(float x, float y, float width, float height);
+  void createWall(float x, float y, float width, float height);
+
+  void createOnLeftClick(float x, float y);
+  void createOnRightClick(float x, float y);
+
+ public:
+  UnitContainer _unitContainer;
 
  private:
   QTimer _timer;
-
-  std::map<int, std::shared_ptr<BasicUnit>> _units;
-  int _unitIndex;
-
   b2World _world;
   UnitFactory _factory;
-
-  b2BodyDef groundBodyDef;
-  b2Body* groundBody;
-  b2PolygonShape groundBox;
-
-  float timeStep;
-  int32 velocityIterations;
-  int32 positionIterations;
 };

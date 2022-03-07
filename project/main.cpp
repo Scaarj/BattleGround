@@ -22,6 +22,8 @@ int main(int argc, char *argv[]) {
       Qt::QueuedConnection);
   QQmlContext *context = engine.rootContext();
   context->setContextProperty("World", &world);
+  context->setContextProperty("Objects", &world._unitContainer);
+
   engine.load(url);
 
   world.init();

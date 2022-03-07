@@ -1,21 +1,25 @@
 #pragma once
 
 #include <Box2D/Box2D.h>
+#include <QObject>
 
 class BasicUnit {
  public:
-  BasicUnit(b2World& world, float, float);
+  BasicUnit(const QString& type, b2World& world, float x, float y);
 
-  b2Body* body() const;
+  float x() const;
+  float y() const;
+  float angle() const;
+  virtual float width() const = 0;
+  virtual float height() const = 0;
 
-  float width() const;
+  const QString& type() const;
+  b2BodyType bodyType() const;
 
-  float height() const;
-
- private:
+ protected:
+  QString _type;
   b2BodyDef _bodyDef;
   b2Body* _body;
-  b2CircleShape _dynamicBox;
+  b2Shape* _shape;
   b2FixtureDef _fixtureDef;
-  float _width, _height;
 };
