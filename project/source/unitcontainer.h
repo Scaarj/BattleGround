@@ -17,10 +17,8 @@ class UnitContainer : public QObject {
   void update();
 
  signals:
-
   void createObject(int id, const QString& type, float x, float y, float width,
                     float height);
-
   void moveObjectTo(int id, const QString& type, float x, float y, float angle);
 
  private:

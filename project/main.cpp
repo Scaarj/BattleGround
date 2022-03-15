@@ -2,6 +2,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
+#include "application.h"
 #include "world.h"
 
 int main(int argc, char *argv[]) {
@@ -10,7 +11,11 @@ int main(int argc, char *argv[]) {
 #endif
 
   QGuiApplication app(argc, argv);
-  World world;
+
+  app.keyboardModifiers();
+  Application application;
+
+  // World world;
 
   QQmlApplicationEngine engine;
   const QUrl url(QStringLiteral("qrc:/qml/MainWindow.qml"));
@@ -21,12 +26,13 @@ int main(int argc, char *argv[]) {
       },
       Qt::QueuedConnection);
   QQmlContext *context = engine.rootContext();
-  context->setContextProperty("World", &world);
-  context->setContextProperty("Objects", &world._unitContainer);
+  context->setContextProperty("AppCore", &application);
+  context->setContextProperty("KeyboardEvents", application.keyboardEvents());
+  context->setContextProperty("World", application.world());
+  context->setContextProperty("Objects", &application.world()->_unitContainer);
 
   engine.load(url);
-
-  world.init();
+  application.init();
 
   return app.exec();
 }

@@ -1,3 +1,4 @@
+set(CMAKE_CXX_STANDARD 20)
 cmake_minimum_required(VERSION 3.14)
 project(BattleGround VERSION 0.1 LANGUAGES CXX)
 
@@ -18,6 +19,7 @@ set(Boost_USE_MULTITHREADED      ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
 
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 find_package(Boost 1.66.0)
 

@@ -2,9 +2,11 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 
 ApplicationWindow {
+
+    visible: true
     width: 800
     height: 600
-    visible: true
+ //   visibility: "FullScreen"
     title: qsTr("BattleGround")
 
     property alias textHint: graphicContext.textHint
@@ -16,6 +18,14 @@ ApplicationWindow {
         color: "red"
     }
 
+
+    Item {
+        anchors.fill: parent
+        focus: true
+        Keys.onPressed: event => { KeyboardEvents.keyPressed(event.key) }
+    }
+
+
     MouseArea {
         id: mouseProperty
         anchors.fill: parent
@@ -23,10 +33,10 @@ ApplicationWindow {
         acceptedButtons: Qt.LeftButton | Qt.RightButton
 
         onClicked: {
-            if (mouse.button == Qt.LeftButton) {
-                World.createOnLeftClick(mouseX, mouseY)
-            } else if (mouse.button == Qt.RightButton) {
-                World.createOnRightClick(mouseX, mouseY)
+            if (mouse.button === Qt.LeftButton) {
+                AppCore.createOnLeftClick(mouseX, mouseY)
+            } else if (mouse.button === Qt.RightButton) {
+                AppCore.createOnRightClick(mouseX, mouseY)
             }
         }
 

@@ -26,9 +26,11 @@ function createObject(id, type, x, y, width, height) {
                                          })
 }
 
-function moveObject(id, x, y, angle) {
+function moveObject(id, type, x, y, angle) {
     object = objects[id]
     object.x = x
     object.y = y
-    object.rotate(angle)
+    if(angle !== 0) {
+        object.rotate(angle)
+    }
 }

@@ -9,6 +9,7 @@ World::World(QObject* parent)
       _factory(_world, this),
       _unitContainer(this) {
   connect(&_timer, &QTimer::timeout, this, &World::onTick);
+  _map = _mapFactory.createMap();
 }
 
 void World::init() {

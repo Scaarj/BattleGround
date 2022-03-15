@@ -7,10 +7,11 @@ set(QT_DEPENDIES
     Qt${QT_VERSION_MAJOR}::Quick
     Qt${QT_VERSION_MAJOR}::Gui
     Qt${QT_VERSION_MAJOR}::Qml
+    Qt${QT_VERSION_MAJOR}::Widgets
     )
 set(QML_FILES qml.qrc)
 
-add_library(${PROJECT_LIBRARY} STATIC ${PROJECT_SOURCES})
+add_library(${PROJECT_LIBRARY} STATIC ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 
 target_link_libraries(${PROJECT_LIBRARY}
     PUBLIC

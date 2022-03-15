@@ -23,14 +23,15 @@ Rectangle {
     }
 
     Connections {
-        target: Objects
+        target: AppCore
 
-        onCreateObject: {
+        function onCreateObject(id, type, x, y, width, height) {
+            console.log(type)
             ObjectCreationScript.createObject(id, type, x, y, width, height)
         }
 
-        onMoveObjectTo: {
-            ObjectCreationScript.moveObject(id, x, y, angle)
+        function onMoveObjectTo(id, type, x, y, angle) {
+            ObjectCreationScript.moveObject(id, type, x, y, angle)
         }
     }
 }

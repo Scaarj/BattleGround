@@ -10,6 +10,8 @@
 #include "unitcontainer.h"
 #include "unitfactory.h"
 
+#include "map/mapfactory.h"
+
 class World : public QObject {
   Q_OBJECT
 
@@ -29,7 +31,6 @@ class World : public QObject {
   void createBall(float x, float y, float radius);
   void createBox(float x, float y, float width, float height);
   void createWall(float x, float y, float width, float height);
-
   void createOnLeftClick(float x, float y);
   void createOnRightClick(float x, float y);
 
@@ -40,4 +41,7 @@ class World : public QObject {
   QTimer _timer;
   b2World _world;
   UnitFactory _factory;
+
+  map::MapFactory _mapFactory;
+  std::shared_ptr<map::WorldMap> _map;
 };
