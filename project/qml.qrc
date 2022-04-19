@@ -6,5 +6,11 @@
         <file>qml/ObjectCreation.js</file>
         <file>qml/qtquickcontrols2.conf</file>
         <file>resource/images/ball.png</file>
+        <file>qml/ObjectBox.qml</file>
+        <file>resource/images/box.png</file>
+        <file>qml/ObjectWall.qml</file>
+        <file>resource/images/brick.png</file>
+        <file>resource/images/rock1.png</file>
+        <file>resource/images/background1.png</file>
     </qresource>
 </RCC>

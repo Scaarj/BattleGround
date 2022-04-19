@@ -1,12 +1,29 @@
 var object
-var component;
+var component
 var objects = {}
 
-function createObjects(id, width) {
-    var size = width * 2
-    component = Qt.createComponent("ObjectBall.qml");
-    object = component.createObject(graphicContext, {x: 0, y: 0, width: size, height: size});
-    objects[id] = object
+function createObject(id, type, x, y, width, height) {
+    switch (type) {
+    case "ball":
+        component = Qt.createComponent("ObjectBall.qml")
+        break
+    case "box":
+        component = Qt.createComponent("ObjectBox.qml")
+        break
+    case "wall":
+        console.log(id, type, x, y, width, height)
+        component = Qt.createComponent("ObjectWall.qml")
+        break
+    default:
+        return
+    }
+
+    objects[id] = component.createObject(graphicContext, {
+                                             "x": x,
+                                             "y": y,
+                                             "width": width,
+                                             "height": height
+                                         })
 }
 
 function moveObject(id, x, y, angle) {
