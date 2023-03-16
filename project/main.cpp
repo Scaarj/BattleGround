@@ -13,7 +13,8 @@ int main(int argc, char *argv[]) {
   World world;
 
   QQmlApplicationEngine engine;
-  const QUrl url(QStringLiteral("qrc:/qml/MainWindow.qml"));
+  const QUrl url
+(QStringLiteral("qrc:/qml/MainWindow.qml"));
   QObject::connect(
       &engine, &QQmlApplicationEngine::objectCreated, &app,
       [url](QObject *obj, const QUrl &objUrl) {
@@ -24,7 +25,7 @@ int main(int argc, char *argv[]) {
   context->setContextProperty("World", &world);
   context->setContextProperty("Objects", &world._unitContainer);
 
-  engine.load(url);
+    engine.load(url);
 
   world.init();
 
